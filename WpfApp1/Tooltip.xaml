@@ -22,11 +22,11 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Width="300">
-                    <ItemsControl DataContext="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
+                    <ItemsControl ItemsSource="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <Image Source="{Binding Value}" ></Image>
+                                    <Image Source="{Binding}" ></Image>
                                 </StackPanel>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
