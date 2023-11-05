@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
-  xmlns:tb="clr-namespace:H.NotifyIcon;assembly=H.NotifyIcon.Wpf" 
+    xmlns:tb="clr-namespace:H.NotifyIcon;assembly=H.NotifyIcon.Wpf" 
         mc:Ignorable="d"
         Title="Tooltip" Height="450" Width="800">
     <Grid>
@@ -12,7 +12,6 @@
         <tb:TaskbarIcon
             x:Name="MyNotifyIcon"
             ToolTipText="hello world">
-
             <!--
         We can use arbitrary UI elements as Popups.
         Popups stay open if the user moves away from the tray area
