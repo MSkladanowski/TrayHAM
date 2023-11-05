@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,12 +21,19 @@ namespace WpfApp1
     /// </summary>
     public partial class Tooltip : Window
     {
-        public Tooltip()
+        public ObservableCollection<string> Images { get; set; } = new ObservableCollection<string>();
+        public Tooltip(IConfiguration configuration)
         {
             InitializeComponent();
-            string title = "WPF NotifyIcon";
-            string text = "This is a standard balloon";
+  
+            var images = configuration.GetSection("Images").Get<string[]>();
+            Console.Write(images);
+            foreach (var item in images)
+            {
 
+            Images.Add(item);
+            }
+            DataContext = this;
             //show balloon with built-in icon
             //MyNotifyIcon.ShowBalloonTip(title, text, BalloonIcon.Error);
         }

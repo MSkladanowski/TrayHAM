@@ -1,4 +1,5 @@
 ﻿<Window x:Class="WpfApp1.Tooltip"
+        x:Name="TooltipTest"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -21,9 +22,26 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Width="300">
-                    <StackPanel>
-                        <Image Source="https://www.hamqsl.com/solarn0nbh.php" ></Image>
-                    </StackPanel>
+                    <ItemsControl DataContext="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Source="{Binding Value}" ></Image>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!--<ItemsControl ItemsSource="{Binding}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding OwnerData.OwnerName}"></TextBlock>
+                                    <TextBlock Text="{Binding Credit}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>-->
                 </Border>
             </tb:TaskbarIcon.TrayPopup>
 

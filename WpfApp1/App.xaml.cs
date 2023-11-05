@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,14 +18,45 @@ namespace WpfApp1
     public partial class App : Application
     {
         private bool _isExit;
+        public IServiceProvider ServiceProvider { get; private set; }
+
+        public IConfiguration Configuration { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            MainWindow = new Tooltip();
+
+
+
+
+
+
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+
+            var tooltip = ServiceProvider.GetRequiredService<Tooltip>();
+            tooltip.Show();
+            tooltip.Hide();
+            MainWindow = tooltip;
             MainWindow.Closing += MainWindow_Closing;
         }
 
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            // ...
+            services.AddTransient<IConfiguration>(sp =>
+            {
+                var builder = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+                return builder.Build();
+            });
+            services.AddTransient(typeof(Tooltip));
+        }
 
 
 
