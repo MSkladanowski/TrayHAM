@@ -12,7 +12,8 @@
 
         <tb:TaskbarIcon
             x:Name="MyNotifyIcon"
-            ToolTipText="hello world">
+            ToolTipText="hello world"
+            PopupPlacement="Center">
             <!--
         We can use arbitrary UI elements as Popups.
         Popups stay open if the user moves away from the tray area
@@ -31,17 +32,6 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-
-                    <!--<ItemsControl ItemsSource="{Binding}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding OwnerData.OwnerName}"></TextBlock>
-                                    <TextBlock Text="{Binding Credit}" />
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>-->
                 </Border>
             </tb:TaskbarIcon.TrayPopup>
 
